@@ -9,6 +9,9 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // DYNAMIC URL: Automatically switches between localhost and Render
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+
   const handleLocalLogin = async (e) => {
     e.preventDefault();
     try {
@@ -74,8 +77,9 @@ const Login = () => {
           </div>
         </div>
 
+        {/* FIXED: Uses the dynamic apiUrl instead of hardcoded localhost */}
         <a
-          href="http://localhost:5000/api/v1/auth/google"
+          href={`${apiUrl}/auth/google`}
           className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg shadow-sm text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 transition-colors"
         >
           <img
