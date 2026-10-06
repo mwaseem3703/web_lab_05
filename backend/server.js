@@ -5,8 +5,6 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const passport = require("passport");
-const mongoSanitize = require("express-mongo-sanitize");
-const xss = require("xss-clean");
 
 require("./config/passportSetup");
 
@@ -45,10 +43,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
-
-// 4. OWASP: Payload Sanitization
-app.use(mongoSanitize());
-app.use(xss());
 
 // 5. OWASP: Rate Limiting
 const authLimiter = rateLimit({
