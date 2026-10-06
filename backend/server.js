@@ -16,10 +16,8 @@ const checkRole = require("./middleware/roleMiddleware");
 
 const app = express();
 
-// 1. OWASP: Secure Headers
 app.use(helmet());
 
-// 2. OWASP: Strict CORS Policy (FIXED for Vercel)
 const allowedOrigins = [
   "http://localhost:5173",
   "https://web-lab-05.vercel.app",
