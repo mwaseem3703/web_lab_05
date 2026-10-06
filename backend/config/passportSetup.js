@@ -5,9 +5,12 @@ const { users } = require("./mockDB"); // Import the array
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/api/v1/auth/google/callback",
+      // Added fallbacks so the server never crashes if .env is missing
+      clientID: process.env.GOOGLE_CLIENT_ID || "pending",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "pending",
+      // FIXED: Point this to your live Render URL
+      callbackURL:
+        "https://web-lab-05-ur6q.onrender.com/api/v1/auth/google/callback",
     },
     function (accessToken, refreshToken, profile, done) {
       try {

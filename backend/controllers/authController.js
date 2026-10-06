@@ -121,17 +121,22 @@ exports.logout = (req, res) => {
 
 exports.googleCallback = (req, res) => {
   const user = req.user;
+
+  // FIXED: Redirect to Vercel on failure
   if (!user)
-    return res.redirect("http://localhost:5173/login?error=OAuthFailed");
+    return res.redirect(
+      "https://web-lab-05-teal.vercel.app/login?error=OAuthFailed",
+    );
 
   const refreshToken = generateRefreshToken(user);
 
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "Strict",
+    secure: true, // MUST be true for production
+    sameSite: "None", // MUST be 'None' for cross-domain
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
-  res.redirect("http://localhost:5173/dashboard");
+  // FIXED: Redirect to Vercel dashboard on success
+  res.redirect("https://web-lab-05-teal.vercel.app/dashboard");
 };

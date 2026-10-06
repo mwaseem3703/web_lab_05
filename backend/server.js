@@ -16,11 +16,15 @@ const checkRole = require("./middleware/roleMiddleware");
 
 const app = express();
 
+// TRUST PROXY: Required for Render load balancer so rate limiter works
+app.set("trust proxy", 1);
+
 app.use(helmet());
 
+// FIXED: Removed the trailing slashes from the Vercel URL
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://web-lab-05-teal.vercel.app//",
+  "https://web-lab-05-teal.vercel.app",
 ];
 
 app.use(
@@ -64,9 +68,10 @@ app.use("/api/v1/auth", authLimiter, authRoutes);
 app.get("/", (req, res) => {
   res.send(`
         <div style="font-family: system-ui, sans-serif; text-align: center; margin-top: 10vh; color: #333;">
-            <h2> Enterprise Gateway is Online</h2>
+            <h2>✅ Enterprise Gateway is Online</h2>
             <p>This is the backend server. To view the application, please visit the frontend portal:</p>
-            <a href="https://web-lab-05-teal.vercel.app// 
+            <!-- FIXED: Added missing quote mark after the URL -->
+            <a href="https://web-lab-05-teal.vercel.app" 
                style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #4f46e5; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
                Go to Frontend Portal
             </a>
