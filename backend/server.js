@@ -20,7 +20,7 @@ app.use(helmet());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://web-lab-05.vercel.app",
+  "https://web-lab-05-teal.vercel.app//",
 ];
 
 app.use(
@@ -66,7 +66,7 @@ app.get("/", (req, res) => {
         <div style="font-family: system-ui, sans-serif; text-align: center; margin-top: 10vh; color: #333;">
             <h2> Enterprise Gateway is Online</h2>
             <p>This is the backend server. To view the application, please visit the frontend portal:</p>
-            <a href="https://web-lab-05.vercel.app" 
+            <a href="https://web-lab-05-teal.vercel.app// 
                style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #4f46e5; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
                Go to Frontend Portal
             </a>
