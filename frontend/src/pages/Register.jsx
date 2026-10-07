@@ -102,9 +102,15 @@ const Register = () => {
 
         {/* FIXED: Uses the dynamic apiUrl instead of hardcoded localhost */}
         <a
-          href={`${apiUrl}/auth/google`}
+          href="https://web-lab-05-ur6q.onrender.com/api/v1/auth/google"
           className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg shadow-sm text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 transition-colors"
         >
+          <img
+            className="h-5 w-5"
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google logo"
+          />
+          Google
           <img
             className="h-5 w-5"
             src="https://www.svgrepo.com/show/475656/google-color.svg"
