@@ -18,11 +18,10 @@ router.post("/logout", logout);
 
 // Google OAuth 2.0
 // Route to trigger the Google login screen
-// Route to trigger the Google login screen
 router.get(
   "/google",
   passport.authenticate("google", {
-    scope: ["profile", "email"], // <-- THIS IS THE MISSING PARAMETER
+    scope: ["profile", "email"],
     session: false,
   }),
 );
@@ -32,7 +31,9 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     session: false,
-    failureRedirect: "http://localhost:5173/login",
+    // FIXED: Redirects to Vercel on failure, not localhost
+    failureRedirect:
+      "https://web-lab-05-teal.vercel.app/login?error=OAuthFailed",
   }),
   googleCallback,
 );
