@@ -87,12 +87,6 @@ const Login = () => {
             alt="Google logo"
           />
           Google
-          <img
-            className="h-5 w-5"
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google logo"
-          />
-          Google
         </a>
 
         <div className="text-center mt-6">
